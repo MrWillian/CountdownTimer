@@ -1,0 +1,54 @@
+version: '3.5'
+
+services:
+  laravel-app:
+    build:
+      context: '.'
+    container_name: laravel-app
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8000:80
+    networks:
+      backend:
+        aliases:
+          - laravel-app
+
+  postgres-db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "65432:5432"
+    networks:
+      backend:
+        aliases:
+          - db
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "williansoares102@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    volumes:
+        - pgadmin:/root/.pgadmin
+    ports:
+      - "16543:80"
+    networks:
+      backend:
+        aliases:
+          - db
+    restart: unless-stopped
+  
+networks:
+  backend:
+    name: backend-network
+
+volumes:
+  postgres:
+  pgadmin:
