@@ -20,5 +20,8 @@
     </div>
   </div>
 
-  <button id="new" type="submit" class="btn btn-success btn-lg btn-layout">Novo Evento</button>
+  <button id="new" type="submit" class="btn btn-success btn-lg btn-layout"
+    onclick="window.location='/home';" >
+    Novo Evento
+  </button>
 </div>
