@@ -112,3 +112,19 @@ form {
 	text-align: center;
 	border-top: 1px solid #FFF;
 }
+
+.list-group-item {
+  background-color: transparent;
+  border: 0px;
+  font-size: 18px;
+  display: flex;
+  align-self: center;
+}
+
+.event_name {
+  color: #FFF;
+}
+
+.event_name:hover {
+  color: #F96331;
+}
