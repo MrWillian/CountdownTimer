@@ -27,7 +27,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event.index');
+        // get all events
+        $events = $this->events->allEvents();
+        return view('event.index', ['events' => $events]);
     }
 
     /**
