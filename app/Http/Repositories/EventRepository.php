@@ -20,4 +20,8 @@ class EventRepository extends BaseRepository
       return new Exception($ex);
     }
   }
+
+  public function allEvents() {
+    return Event::all();
+  }
 }
