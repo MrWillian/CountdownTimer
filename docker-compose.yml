@@ -9,11 +9,13 @@ services:
       - .:/var/www/html
     ports:
       - 8000:80
+    links:
+      - postgres-db
     networks:
       backend:
         aliases:
           - laravel-app
-
+    
   postgres-db:
     image: postgres
     container_name: postgres-db
