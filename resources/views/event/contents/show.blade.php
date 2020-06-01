@@ -21,7 +21,7 @@
   </div>
 
   <button id="new" type="submit" class="btn btn-success btn-lg btn-layout"
-    onclick="window.location='/home';" >
+    onclick="window.location='/event/create';" >
     Novo Evento
   </button>
 </div>
