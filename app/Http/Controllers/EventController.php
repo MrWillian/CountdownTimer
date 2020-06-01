@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Event;
 use Illuminate\Http\Request;
+use App\Http\Repositories\EventRepository;
 
 class EventController extends Controller
 {
+    protected $events;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  EventRepository  $events
+     * @return void
+     */
+    public function __construct(EventRepository $events)
+    {
+        $this->events = $events;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return view('event.index');
     }
 
     /**
@@ -24,7 +37,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.register');
     }
 
     /**
@@ -35,7 +48,12 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'date' => 'required|date',
+            'time' => ''
+        ]);
+        $this->events->insertEvent($validatedData);
     }
 
     /**
