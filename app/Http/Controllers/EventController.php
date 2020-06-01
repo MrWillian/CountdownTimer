@@ -54,6 +54,7 @@ class EventController extends Controller
             'time' => ''
         ]);
         $this->events->insertEvent($validatedData);
+        return redirect()->route('event.index');
     }
 
     /**
