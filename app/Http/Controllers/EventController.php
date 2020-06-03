@@ -27,9 +27,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        // get all events
         $events = $this->events->allEvents();
-        return view('event.index', ['events' => $events]);
+        $selectedEvent = !$events->isEmpty() ? $events[0] : null;
+        
+        return view('event.index', [
+            'events' => $events, 
+            'selectedEvent' => $selectedEvent
+        ]);
     }
 
     /**
@@ -52,11 +56,11 @@ class EventController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'date' => 'required|date',
+            'date' => 'required|date_format:d/m/Y',
             'time' => ''
         ]);
-        $this->events->insertEvent($validatedData);
-        return redirect()->route('event.index');
+        $savedEvent = $this->events->insertEvent($validatedData);
+        return redirect()->route('event.index')->with('savedEvent', $savedEvent);
     }
 
     /**
