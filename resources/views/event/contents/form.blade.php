@@ -14,7 +14,7 @@
       <label class="col-sm-2 control-label label" for="data">Data</label>
       <div class="col-sm-10">
         <input type="text" name="date" id="date" placeholder="__/__/____" class="form-control" />
-        <input type="text" name="time" id="time" value="24:00:00" class="form-control" />
+        <input type="text" name="time" id="time" value="00:00:00" class="form-control" />
         <span id="helpBlockData" class="help-block">Informe o dia seguido do horário do evento.</span>
       </div>
     </div>
