@@ -12,16 +12,17 @@ class EventRepository extends BaseRepository
   public function insertEvent($data){
     $event = new Event;
     $event->name = $data['name'];
-    $event->date = $data['date'];
+    $event->date = date('Y/m/d', strtotime(str_replace("/", "-",$data['date'])));
     $event->time = $data['time'];
     try {
       $event->save();
+      return $event;
     } catch(Exception $ex) {
       return new Exception($ex);
     }
   }
 
   public function allEvents() {
-    return Event::all();
+    return Event::orderBy('id')->get();
   }
 }
